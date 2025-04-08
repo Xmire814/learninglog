@@ -1,0 +1,22 @@
+{% extends "learning_logs/base.html" %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+
+    <li class="list-group-item border-0">You are already logged in!</li>
+
+    {% else %}
+    <form action="{% url 'accounts:register' %}" method='post'>
+        {% csrf_token %}
+        {{ form.as_div }}
+    
+        
+        <button name="submit" class="btn btn-primary" style="margin-top: 15px;">
+            Register
+        </button>
+    </form>
+
+{% endif %}
+
+{% endblock content %}
