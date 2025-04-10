@@ -11,6 +11,11 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+import os
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # My settings.
 LOGIN_REDIRECT_URL = 'learning_logs:index'
@@ -25,12 +30,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-o4_=ahy6m740g$j$z)yq7mr6vur=z7(kii@n(v-o+k+nx5v7vb'
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'unsafe-default-key')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['.onrender.com']
 
 
 # Application definition
